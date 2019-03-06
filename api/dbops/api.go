@@ -4,10 +4,10 @@ import (
   "log"
 )
 
-
+// run go test or go test -v (打印详细测试信息)
 func AddUserCredential(loginName string, pwd string) error {
   // Prepare为预编译
-  stmtIns, err := dbConn.Prepare("INSERT INTO users (login_name, pwd) VALUES (?, ?)")
+  stmtIns, err := dbConn.Prepare("INSERT INTO users(login_name, pwd) VALUES (?,?)")
   if err != nil {
     return err
   }
@@ -36,6 +36,6 @@ func DeleteUser(loginName string, pwd string) error {
     return err
   }
   stmtDel.Exec(loginName, pwd)
-  stmtDel.close()
+  stmtDel.Close()
   return nil
 }

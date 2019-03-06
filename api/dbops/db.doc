@@ -1,0 +1,29 @@
+CREATE DATABASE xcvideo;
+
+CREATE TABLE IF NOT EXISTS users (
+    id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    login_name VARCHAR(255) NOT NULL,
+    pwd TEXT
+);
+
+// id为VARCHAR(64)的目的是存UUID, 避免数据量过大时，id溢出
+CREATE TABLE IF NOT EXISTS video_infos (
+    id VARCHAR(64) PRIMARY KEY NOT NULL,
+    author_id INT,
+    name TEXT,
+    display_ctime TEXT,
+    create_time DATETIME
+);
+
+CREATE TABLE IF NOT EXISTS comments (
+    id VARCHAR(64) PRIMARY KEY NOT NULL,
+    video_id VARCHAR(64),
+    author_id INT,
+    content TEXT,
+    time DATETIME
+);
+
+CREATE TABLE IF NOT EXISTS sessions (
+    id INT PRIMARY KEY NOT NULL,
+    login_name VARCHAR(255) NOT NULL
+);

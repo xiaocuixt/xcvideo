@@ -8,22 +8,22 @@ import (
 
 func clearTables() {
   dbConn.Exec("truncate users")
-  dbConn.Exec("truncate video_info")
+  dbConn.Exec("truncate video_infos")
   dbConn.Exec("truncate comments")
   dbConn.Exec("truncate sessions")
 }
 
 func TestMain(m *testing.M) {
-  clearTables
-  m.Run(0)
-  clearTables
+  clearTables()
+  m.Run()
+  clearTables()
 }
 
 func TestUserWorkFlow(t *testing.T) {
-  t.run("Add", testAddUser)
-  t.run("Get", testGetUser)
-  t.run("Del", testDeleteUser)
-  t.run("Reget", testRegetUser)
+  t.Run("Add", testAddUser)
+  t.Run("Get", testGetUser)
+  t.Run("Del", testDeleteUser)
+  t.Run("Reget", testRegetUser)
 }
 
 func testAddUser(t *testing.T) {
