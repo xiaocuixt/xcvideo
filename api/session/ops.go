@@ -3,9 +3,9 @@ package session
 import (
   "time"
   "sync"
-  "xcvideo/api/defs"
-  "xcvideo/api/dbops"
-  "xcvideo/api/utils"
+  "github.com/xiaocuixt/xcvideo/api/defs"
+  "github.com/xiaocuixt/xcvideo/api/dbops"
+  "github.com/xiaocuixt/xcvideo/api/utils"
 )
 
 var sessionMap *sync.Map
@@ -29,7 +29,7 @@ func LoadSessionsFromDB() {
   if err != nil {
     return
   }
-  r.Range(func(k, v interface{} bool) {
+  r.Range(func(k, v interface{}) bool{
     ss := v.(*defs.SimpleSession)
     sessionMap.Store(k, ss)
     return true
