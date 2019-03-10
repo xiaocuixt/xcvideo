@@ -10,10 +10,10 @@ type ErrorResponse struct {
   Error Err
 }
 
-var (
-  ErrorRequestBodyParseFailed = ErrResponse{HttpSC: 400, Error: Err{Error: "Request body is not corrent", ErrorCode: "001"}}
-  ErrorNotAuthUser = ErrResponse{HttpSC: 401, Error: Err{Error: "User authentication failed.", ErrorCode: "002"}}
-)
+// var (
+//   ErrorRequestBodyParseFailed ErrorResponse{HttpSC: 400, Error: Err{Error: "Request body is not corrent", ErrorCode: "001"}}
+//   ErrorNotAuthUser ErrorResponse{HttpSC: 401, Error: Err{Error: "User authentication failed.", ErrorCode: "002"}}
+// )
 
 
 
