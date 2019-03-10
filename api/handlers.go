@@ -5,6 +5,7 @@ import (
   "io/ioutil"
   "encoding/json"
   "net/http"
+  "log"
   "github.com/xiaocuixt/xcvideo/api/defs"
   "github.com/xiaocuixt/xcvideo/api/dbops"
   "github.com/xiaocuixt/xcvideo/api/session"
@@ -12,13 +13,18 @@ import (
 )
 
 func CreateUser(w http.ResponseWriter, r *http.Request, ps httprouter.Params){
-  res, _ := ioutil.ReadAll(r.body)
+  res, _ := ioutil.ReadAll(r.Body)
   ubody := &defs.UserCredential{}
+  log.Printf("%s", r.Body)
+  log.Printf("%s", res)
+  log.Printf("%s", ubody)
+  log.Printf("%s", ps)
   if err := json.Unmarshal(res, ubody); err != nil {
+    log.Printf("%s", ubody)
     sendErrorResponse(w, defs.ErrorRequestBodyParseFailed)
     return
   }
-  if err := dbops.AddUserCredential(ubody.Username, ubody.pwd); err != nil {
+  if err := dbops.AddUserCredential(ubody.Username, ubody.Pwd); err != nil {
     sendErrorResponse(w, defs.ErrorDBError)
     return
   }

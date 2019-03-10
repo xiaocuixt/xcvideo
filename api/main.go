@@ -9,16 +9,16 @@ type middleWareHandler struct {
   r *httprouter.Router
 }
 
-func newMiddleWareHandler(r *httprouter) http.Handler {
+func newMiddleWareHandler(r *httprouter.Router) http.Handler {
   m := middleWareHandler{}
   m.r = r
   return m
 }
 
-func (m middleWareHandler) serveHTTP(w http.ResponseWriter, r *http.Request) {
+func (m middleWareHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
   // check session
   validateUserSession(r)
-  m.r.serveHTTP(w, r)
+  m.r.ServeHTTP(w, r)
 }
 
 func RegisterHandlers() *httprouter.Router {

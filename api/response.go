@@ -3,6 +3,7 @@ package main
 import (
   "io"
   "net/http"
+  "encoding/json"
   "github.com/xiaocuixt/xcvideo/api/defs"
 )
 

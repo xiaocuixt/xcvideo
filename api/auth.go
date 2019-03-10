@@ -3,6 +3,7 @@ package main
 import (
   "net/http"
   "github.com/xiaocuixt/xcvideo/api/session"
+  "github.com/xiaocuixt/xcvideo/api/defs"
 )
 
 var HEADER_FIELD_SESSION = "X-Session-Id"
@@ -13,7 +14,7 @@ func validateUserSession(r *http.Request) bool {
   if len(sid) == 0 {
     return false
   }
-  uname, ok := session.isSessionExpired(sid)
+  uname, ok := session.IsSessionExpired(sid)
   if ok {
     return false
   }
@@ -24,8 +25,8 @@ func validateUserSession(r *http.Request) bool {
 func validateUser(w http.ResponseWriter, r *http.Request) bool {
   uname := r.Header.Get(HEADER_FIELD_NAME)
   if len(uname) == 0 {
-    sendErrorResponse()
+    sendErrorResponse(w, defs.ErrorNotAuthUser)
     return false
   }
-
+  return true
 }

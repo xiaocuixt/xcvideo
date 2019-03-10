@@ -5,7 +5,7 @@ import (
   "strconv"
   "log"
   "database/sql"
-  "xcvideo/api/defs"
+  "github.com/xiaocuixt/xcvideo/api/defs"
 )
 
 func InsertSession(sid string, ttl int64, uname string) error {
