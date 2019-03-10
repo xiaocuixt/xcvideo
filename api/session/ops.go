@@ -37,7 +37,7 @@ func LoadSessionsFromDB() {
 }
 
 func GenerateNewSessionId(username string) string {
-  id, _ := utils.newUUID()
+  id, _ := utils.NewUUID()
   ctime := nowInMilli()
   ttl := ctime + 30 * 60 * 1000 //session在本地的过期时间为30 minutes
 
