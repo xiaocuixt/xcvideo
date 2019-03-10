@@ -37,13 +37,13 @@ func LoadSessionsFromDB() {
 }
 
 func GenerateNewSessionId(username string) string {
-  id, _ := utils.newUUID
+  id, _ := utils.newUUID()
   ctime := nowInMilli()
   ttl := ctime + 30 * 60 * 1000 //session在本地的过期时间为30 minutes
 
-  ss := &defs.SimpleSession{Username: un, TTL: ttl}
+  ss := &defs.SimpleSession{Username: username, TTL: ttl}
   sessionMap.Store(id, ss)
-  dbops.InsertSession(id, ttl, un)
+  dbops.InsertSession(id, ttl, username)
   return id
 }
 
