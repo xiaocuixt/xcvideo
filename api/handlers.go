@@ -15,10 +15,6 @@ import (
 func CreateUser(w http.ResponseWriter, r *http.Request, ps httprouter.Params){
   res, _ := ioutil.ReadAll(r.Body)
   ubody := &defs.UserCredential{}
-  log.Printf("%s", r.Body)
-  log.Printf("%s", res)
-  log.Printf("%s", ubody)
-  log.Printf("%s", ps)
   if err := json.Unmarshal(res, ubody); err != nil {
     log.Printf("%s", ubody)
     sendErrorResponse(w, defs.ErrorRequestBodyParseFailed)
